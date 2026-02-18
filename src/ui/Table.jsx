@@ -98,5 +98,6 @@ Table.Header = Header;
 Table.Row = Row;
 Table.Body = Body;
 Table.Footer = Footer;
+Table.Empty = Empty;
 
 export default Table;
