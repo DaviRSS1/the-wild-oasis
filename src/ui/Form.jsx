@@ -1,6 +1,9 @@
 import styled, { css } from "styled-components";
 
 const Form = styled.form`
+  overflow: auto;
+  max-height: 80vh;
+
   ${(props) =>
     props.type === "regular" &&
     css`
@@ -18,7 +21,6 @@ const Form = styled.form`
       width: 80rem;
     `}
     
-  overflow: hidden;
   font-size: 1.4rem;
 `;
 

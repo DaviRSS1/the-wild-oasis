@@ -1,10 +1,11 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const FormRowStyled = styled.div`
   display: grid;
-  align-items: center;
-  grid-template-columns: 24rem 1fr 1.2fr;
+  align-items: start;
+  grid-template-columns: 24rem 1fr;
   gap: 2.4rem;
+  align-items: center;
 
   padding: 1.2rem 0;
 
@@ -20,15 +21,28 @@ const FormRowStyled = styled.div`
     border-bottom: 1px solid var(--color-grey-100);
   }
 
-  &:has(button) {
-    display: flex;
-    justify-content: flex-end;
-    gap: 1.2rem;
-  }
+  ${(props) =>
+    props.type === "buttons" &&
+    css`
+      display: flex;
+      justify-content: flex-end;
+      gap: 1.2rem;
+    `}
 `;
 
 const Label = styled.label`
   font-weight: 500;
+`;
+
+const FieldWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  & > * {
+    width: 100%;
+  }
 `;
 
 const Error = styled.span`
@@ -36,12 +50,18 @@ const Error = styled.span`
   color: var(--color-red-700);
 `;
 
-function FormRow({ label, error, children }) {
+function FormRow({ label, error, children, id, type }) {
+  if (type === "buttons")
+    return <FormRowStyled type="buttons">{children}</FormRowStyled>;
+
   return (
     <FormRowStyled>
-      {label && <Label htmlFor={children.props.id}>{label}</Label>}
-      {children}
-      {error && <Error>{error}</Error>}
+      {label && <Label htmlFor={id}>{label}</Label>}
+
+      <FieldWrapper>
+        {children}
+        {error && <Error>{error}</Error>}
+      </FieldWrapper>
     </FormRowStyled>
   );
 }
