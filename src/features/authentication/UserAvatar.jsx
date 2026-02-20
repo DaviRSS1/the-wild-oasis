@@ -30,7 +30,7 @@ function UserAvatar() {
     <Link to="/account">
       <StyledUserAvatar>
         <Avatar
-          src={avatar || "default-user.jpg"}
+          src={avatar || "/default-user.jpg"}
           alt={`Avatar of ${fullName}`}
         />
         <p>{fullName}</p>
