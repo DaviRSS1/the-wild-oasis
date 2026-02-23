@@ -7,13 +7,7 @@ import Form from "../../ui/Form";
 import Button from "../../ui/Button";
 import Textarea from "../../ui/Textarea";
 import FormRow from "../../ui/FormRow";
-import {
-  differenceInDays,
-  format,
-  isBefore,
-  parseISO,
-  startOfToday,
-} from "date-fns";
+import { format, isBefore, parseISO, startOfToday } from "date-fns";
 
 import Spinner from "../../ui/Spinner";
 import CabinDropdown from "./CabinDropdown";
@@ -21,6 +15,7 @@ import Checkbox from "../../ui/Checkbox";
 import { formatCurrency } from "../../utils/helpers";
 import { useSettings } from "../settings/useSettings";
 import GuestDropdown from "./GuestDropdown";
+import { useBookingPrice } from "./useBookingPrice";
 
 function CreateBookingForm({ bookingToEdit = {}, onCloseModal }) {
   const { createBooking, isCreating } = useCreateBooking();
@@ -86,6 +81,7 @@ function CreateBookingForm({ bookingToEdit = {}, onCloseModal }) {
   });
 
   const startDate = useWatch({ control, name: "startDate" });
+
   const endDate = useWatch({ control, name: "endDate" });
   const numGuests = useWatch({ control, name: "numGuests" });
   const hasBreakfast = useWatch({
@@ -93,20 +89,16 @@ function CreateBookingForm({ bookingToEdit = {}, onCloseModal }) {
     name: "hasBreakfast",
   });
 
-  const numNights =
-    startDate && endDate
-      ? differenceInDays(parseISO(endDate), parseISO(startDate))
-      : 0;
-
-  const cabinPrice =
-    ((cabin?.regularPrice ?? 0) - (cabin?.discount ?? 0)) * (numNights ?? 0);
-
-  const optionalBreakfastPrice =
-    (settings?.breakfastPrice ?? 0) * (numGuests ?? 0) * (numNights ?? 0);
-
-  const breakfastTotal = hasBreakfast ? optionalBreakfastPrice : 0;
-
-  const totalPrice = cabinPrice + breakfastTotal;
+  const { numNights, cabinPrice, breakfastTotal, totalPrice } = useBookingPrice(
+    {
+      startDate,
+      endDate,
+      cabin,
+      numGuests,
+      hasBreakfast,
+      settings,
+    },
+  );
 
   if (isPendingSettings) return <Spinner />;
 
@@ -219,7 +211,7 @@ function CreateBookingForm({ bookingToEdit = {}, onCloseModal }) {
         >
           Wants to add breakfast for {numGuests} guest
           {numGuests > 1 ? "s" : ""} for {numNights} night
-          {numNights > 1 ? "s" : ""} ({formatCurrency(optionalBreakfastPrice)})
+          {numNights > 1 ? "s" : ""} ({formatCurrency(breakfastTotal)})
         </Checkbox>
         <Checkbox disabled={isWorking} id="isPaid" {...register("isPaid")}>
           Paying now? {formatCurrency(totalPrice)} ({formatCurrency(cabinPrice)}{" "}
