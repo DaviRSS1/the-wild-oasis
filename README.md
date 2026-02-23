@@ -8,15 +8,27 @@ Beyond the course implementation, this project was extended with additional feat
 
 ---
 
-🌐 Live Demo  
+🌐 Live Demo
 
 👉 https://the-wild-oasis-27em.vercel.app/
+
+---
+
+## 🔐 Test Login
+
+You can use the following credentials to test the application:
+
+- **Email:** test@example.com
+- **Password:** pass1234
+
+> These credentials are for demonstration and testing purposes only.
 
 ---
 
 ## 🚀 Features
 
 ### 🏠 Cabins Management
+
 - Create new cabins
 - Edit existing cabins
 - Delete cabins
@@ -24,6 +36,7 @@ Beyond the course implementation, this project was extended with additional feat
 - Upload cabin images to Supabase Storage
 
 ### 📅 Bookings Management
+
 - Create bookings (custom feature implemented)
 - Check-in guests
 - Add optional breakfast
@@ -35,6 +48,7 @@ Beyond the course implementation, this project was extended with additional feat
 - Prefetching with React Query
 
 ### 👥 Guests Management (Custom Feature)
+
 - Dedicated Guests page
 - Guests table
 - Create new guest
@@ -44,6 +58,7 @@ Beyond the course implementation, this project was extended with additional feat
 - URL state synchronization for sorting and filtering
 
 ### 📊 Dashboard
+
 - Display statistics
 - Recent bookings and stays
 - Line chart (Recharts)
@@ -51,6 +66,7 @@ Beyond the course implementation, this project was extended with additional feat
 - Current day activity
 
 ### 🔐 Authentication & Authorization
+
 - User sign up
 - User login
 - User logout
@@ -59,6 +75,7 @@ Beyond the course implementation, this project was extended with additional feat
 - Update user data and password
 
 ### 🎨 UI & UX
+
 - Styled Components architecture
 - Reusable component system
 - Compound component pattern
@@ -153,7 +170,7 @@ Additional features like full Guests CRUD and booking creation were implemented 
 
 ## 👤 Author
 
-Developed by **Davi Reghim**  
+Developed by **Davi Reghim**
 
 🔗 LinkedIn:  
 https://www.linkedin.com/in/davi-reghim-13b995272/
