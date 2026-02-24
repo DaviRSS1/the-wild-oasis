@@ -2,7 +2,6 @@ import { useState } from "react";
 import styled from "styled-components";
 import { formatCurrency } from "../../utils/helpers";
 import Spinner from "../../ui/Spinner";
-import { useCabins } from "../cabins/useCabins";
 
 const Wrapper = styled.div`
   position: relative;
@@ -98,16 +97,13 @@ const DiscountBadge = styled.span`
   border-radius: 999px;
 `;
 
-function CabinDropdown({ selectedCabin, onSelect, numGuests = 1 }) {
-  const { cabins, isPending } = useCabins();
+function CabinDropdown({ selectedCabin, onSelect, numGuests = 1, cabins }) {
   const [isOpen, setIsOpen] = useState(false);
 
   function handleSelect(cabin) {
     onSelect(cabin);
     setIsOpen(false);
   }
-
-  if (isPending) return <Spinner />;
 
   const accessableCabins = cabins.filter(
     (cabin) => cabin.maxCapacity > numGuests,

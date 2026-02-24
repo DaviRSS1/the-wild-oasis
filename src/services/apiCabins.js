@@ -62,3 +62,26 @@ export async function createUpdateCabin(newCabin, id) {
 
   return data;
 }
+
+export async function getAvailableCabins(startDate, endDate) {
+  if (!startDate || !endDate) return [];
+
+  const { data: bookings, error: bookingError } = await supabase
+    .from("bookings")
+    .select("cabinId")
+    .lt("startDate", endDate)
+    .gt("endDate", startDate);
+
+  if (bookingError) throw new Error(bookingError.message);
+
+  const bookedCabinIds = bookings.map((b) => b.cabinId);
+
+  const { data: cabins, error: cabinError } = await supabase
+    .from("cabins")
+    .select("*")
+    .not("id", "in", `(${bookedCabinIds.join(",")})`);
+
+  if (cabinError) throw new Error(cabinError.message);
+
+  return cabins;
+}

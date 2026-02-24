@@ -16,6 +16,7 @@ import { formatCurrency } from "../../utils/helpers";
 import { useSettings } from "../settings/useSettings";
 import GuestDropdown from "./GuestDropdown";
 import { useBookingPrice } from "./useBookingPrice";
+import { useAvailableCabins } from "./useAvailableCabins";
 
 function CreateBookingForm({ bookingToEdit = {}, onCloseModal }) {
   const { createBooking, isCreating } = useCreateBooking();
@@ -100,7 +101,12 @@ function CreateBookingForm({ bookingToEdit = {}, onCloseModal }) {
     },
   );
 
-  if (isPendingSettings) return <Spinner />;
+  const { data: cabins = [], isPending: isPendingCabins } = useAvailableCabins(
+    startDate,
+    endDate,
+  );
+
+  if (isPendingSettings || isPendingCabins) return <Spinner />;
 
   return (
     <Form
@@ -189,6 +195,7 @@ function CreateBookingForm({ bookingToEdit = {}, onCloseModal }) {
         <CabinDropdown
           numGuests={numGuests}
           selectedCabin={cabin}
+          cabins={cabins}
           onSelect={(cabin) => {
             setValue("cabinId", cabin.id, { shouldValidate: true });
             setValue("cabin", cabin);
