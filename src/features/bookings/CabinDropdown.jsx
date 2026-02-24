@@ -109,6 +109,10 @@ function CabinDropdown({ selectedCabin, onSelect, numGuests = 1, cabins }) {
     (cabin) => cabin.maxCapacity > numGuests,
   );
 
+  if (cabins.length === 0) {
+    return <p>No available cabin</p>;
+  }
+
   return (
     <Wrapper>
       <Trigger type="button" onClick={() => setIsOpen((s) => !s)}>
