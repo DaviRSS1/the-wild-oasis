@@ -1,16 +1,37 @@
-# 🏨 The Wild Oasis
+# 🏨 The Wild Oasis – Admin Panel
 
-The Wild Oasis is a full-stack React application built for **study purposes**, developed while following an advanced React course and expanded with additional custom features.
+**The Wild Oasis – Admin Panel** is a full-stack React application built for **study purposes**, developed while following an advanced React course and expanded with additional custom features.
 
-The application simulates a real hotel management dashboard, allowing staff members to manage cabins, bookings, and guests in a professional admin interface.
+This application represents the **administrative dashboard** of The Wild Oasis platform, allowing staff members to manage cabins, bookings, and guests in a professional hotel management interface.
 
-Beyond the course implementation, this project was extended with additional features such as **booking creation** and full **CRUD operations for guests**, including a dedicated Guests page and table.
+It works together with the customer-facing application:
+
+🌐 **Customer Website (Next.js App Router)**  
+👉 https://the-wild-oasis-website-ruddy-beta.vercel.app/
+
+Together, both projects simulate a real-world SaaS architecture with separated **admin** and **client** environments connected to the same Supabase backend.
 
 ---
 
-🌐 Live Demo
+🌐 Live Demo (Admin Panel)
 
 👉 https://the-wild-oasis-27em.vercel.app/
+
+---
+
+## 🔗 Related Project
+
+🏕️ **The Wild Oasis – Customer Website (Next.js)**  
+👉 https://github.com/DaviRSS1/the-wild-oasis-website
+
+The customer application allows guests to:
+
+- Browse cabins
+- Create reservations
+- Manage their bookings
+- Authenticate with NextAuth
+
+Both apps share the same database and simulate a production-style booking ecosystem.
 
 ---
 
@@ -63,7 +84,7 @@ You can use the following credentials to test the application:
 - Recent bookings and stays
 - Line chart (Recharts)
 - Pie chart (Recharts)
-- Current day activity
+- Current day activity overview
 
 ### 🔐 Authentication & Authorization
 
@@ -93,7 +114,7 @@ You can use the following credentials to test the application:
 
 ## 🧠 Concepts Practiced
 
-This project was built to deeply reinforce advanced React architecture and real-world patterns:
+This project was built to deeply reinforce advanced React architecture and real-world SaaS patterns:
 
 - Advanced React Router patterns
 - URL search params synchronization
@@ -101,7 +122,7 @@ This project was built to deeply reinforce advanced React architecture and real-
 - Render Props Pattern
 - Higher Order Components (HOC)
 - Custom Hooks abstraction
-- React Query (TanStack Query v4)
+- TanStack React Query v4
   - Queries
   - Mutations
   - Prefetching
@@ -110,7 +131,7 @@ This project was built to deeply reinforce advanced React architecture and real-
 - API-side filtering and sorting
 - Form handling with React Hook Form
 - Styled Components with global styles
-- Dark mode with CSS variables
+- Dark mode using CSS variables
 - React Portals
 - Performance optimization
 - Supabase integration
@@ -134,19 +155,22 @@ This project was built to deeply reinforce advanced React architecture and real-
 - Recharts
 - date-fns
 - Vite
-- Vercel (for deployment)
+- Vercel (Deployment)
 
 ---
 
-## 🗄️ Database
+## 🗄️ Backend & Database
 
-The backend is powered by **Supabase**, including:
+The backend is powered by **Supabase**, shared with the Customer Website project:
 
 - Relational database structure
 - Foreign key relationships
 - Secure Row Level Policies (RLS)
 - Authentication system
 - File storage buckets
+- Shared cabin and booking system between apps
+
+Both the Admin Panel and Customer Website operate on the same database, simulating a real booking platform architecture.
 
 ---
 
@@ -154,17 +178,18 @@ The backend is powered by **Supabase**, including:
 
 This application was developed for **advanced React practice**, focusing on building a real-world, production-style admin dashboard.
 
-The goal was to simulate real SaaS-level architecture while strengthening knowledge in:
+The goal was to simulate a SaaS-level architecture while strengthening knowledge in:
 
-- State management patterns
-- Server state vs UI state
+- Server state vs UI state management
 - Data synchronization
-- Component reusability
 - Backend integration
+- Component reusability
 - Performance optimization
 - Scalable frontend architecture
 
 Additional features like full Guests CRUD and booking creation were implemented independently to go beyond the course scope and solidify backend + frontend integration skills.
+
+Together with the Next.js Customer Website, this project represents a complete booking ecosystem.
 
 ---
 
